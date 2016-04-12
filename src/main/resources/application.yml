@@ -26,8 +26,16 @@ zuul:
   ignoredServices: "*"
   routes:
     businessunitpath:
-      path: /bu/**
-      serviceId: buapi
+      path: /business-units/**
+      serviceId: businessunit-service
+      stripPrefix: false
+    bediendepath:
+      path: /bediendes/**
+      serviceId: bediende-service
+      stripPrefix: false
+    contractpath:
+      path: /contracts/**
+      serviceId: contract-service
       stripPrefix: false
 
 logging:
@@ -45,4 +53,4 @@ eureka:
     preferIpAddress: true
   client:
     serviceUrl:
-      defaultZone: http://discovery1:8761/eureka/
+      defaultZone: http://discovery:8761/eureka/
