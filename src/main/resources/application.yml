@@ -37,6 +37,10 @@ zuul:
       path: /contracts/**
       serviceId: contract-service
       stripPrefix: false
+    planningpath:
+      path: /planning/**
+      serviceId: planning-service
+      stripPrefix: true
 
 logging:
   level:
