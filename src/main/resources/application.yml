@@ -41,6 +41,10 @@ zuul:
       path: /planning/**
       serviceId: planning-service
       stripPrefix: true
+    beheerpath:
+      path: /beheer/**
+      serviceId: beheer-service
+      stripPrefix: true
 
 logging:
   level:
