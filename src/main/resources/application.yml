@@ -22,6 +22,12 @@ endpoints:
   health:
     sensitive: false
 
+proxy:
+   auth:
+   routes:
+   stores: passthru
+
+
 zuul:
   ignoredServices: "*"
   routes:
@@ -29,6 +35,12 @@ zuul:
       path: /business-units/**
       serviceId: businessunit-service
       stripPrefix: false
+
+      edgepath:
+          path: /edge/**
+          serviceId: edge-service
+          stripPrefix: true
+
     bediendepath:
       path: /bediendes/**
       serviceId: contract-service
@@ -41,10 +53,13 @@ zuul:
       path: /planning/**
       serviceId: planning-service
       stripPrefix: true
-    beheerpath:
-      path: /beheer/**
-      serviceId: beheer-service
-      stripPrefix: true
+
+
+edge-service:
+  token:
+    header: Authorization
+    secret: flatMap43
+    expiration: 604800
 
 logging:
   level:
@@ -55,6 +70,9 @@ logging:
 ---
 spring:
   profiles: docker
+  data:
+      mongodb:
+        host: edge-mongo
 
 eureka:
   instance:
