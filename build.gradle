@@ -25,7 +25,7 @@ jar {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-group = "company.tothepoint"
+group = "tothepointitco"
 
 docker {
 	maintainer = "Kaj Van der Hallen <kaj.vanderhallen@tothepoint.company>"
@@ -60,12 +60,12 @@ dependencies {
 	compile('org.springframework.cloud:spring-cloud-starter-eureka')
 	compile('org.springframework.cloud:spring-cloud-starter-zuul')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 dependencyManagement {
-	imports { 
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.RC1" 
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.RC1"
 	}
 }
 

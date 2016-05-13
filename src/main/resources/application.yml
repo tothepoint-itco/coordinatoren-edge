@@ -66,6 +66,7 @@ logging:
     ROOT: WARN
     org.springframework.web: WARN
     com.netflix.hystrix: DEBUG
+    com.netflix.discovery: FATAL
 
 ---
 spring:
@@ -76,7 +77,7 @@ spring:
 
 eureka:
   instance:
-    preferIpAddress: true
+    preferIpAddress: false
   client:
     serviceUrl:
       defaultZone: http://discovery:8761/eureka/
