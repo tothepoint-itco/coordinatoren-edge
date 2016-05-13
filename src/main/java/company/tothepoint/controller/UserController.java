@@ -9,11 +9,13 @@ import org.springframework.boot.actuate.autoconfigure.ShellProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 
 /**
@@ -22,7 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -31,10 +33,16 @@ public class UserController {
         return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
     }
 
+
+
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<User> createBeheerder(@RequestBody User user) {
-        LOG.debug("POST /users createUsers(..) called!");
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        logger.debug("POST /users createUsers(..) called!");
+        logger.error("DIEDE!!!!");
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+
         User createdUser = userRepository.save(user);
+        logger.error(createdUser.getPassword());
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
